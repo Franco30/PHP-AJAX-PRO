@@ -21,12 +21,19 @@ if(isset($_POST['action']) && $_POST['action'] == "update"){
     $username=$_POST['username'];
     $password=$_POST['password'];
     $userrole=$_POST['userrole'];
-
     
-    $stmt = $conn->prepare("UPDATE `users` SET `fullname` = ?, `username` = ?, `password` = ?, `userrole` = ? WHERE `userid` = ?") or die(mysqli_error());
-    $stmt->bind_param("ssssi", $fullname, $username, $password, $userrole, $id);
+    
+//    $conn->query("CALL updateUserData('$id', '$fullname', '$username', '$password', '$userrole')")or die(mysqli_error());
+    
+    $stmt = $conn->prepare("CALL updateUserData(?,?,?,?,?)") or die(mysqli_error());
+    $stmt->bind_param("issss", $id, $fullname, $username, $password, $userrole);
     $stmt->execute();
     $conn->close();
+    
+//    $stmt = $conn->prepare("UPDATE `users` SET `fullname` = ?, `username` = ?, `password` = ?, `userrole` = ? WHERE `userid` = ?") or die(mysqli_error());
+//    $stmt->bind_param("ssssi", $fullname, $username, $password, $userrole, $id);
+//    $stmt->execute();
+//    $conn->close();
     
 }
 ?>

@@ -18,8 +18,12 @@ if(isset($_POST['show'])){
         <tbody>
             <?php
     require '../require/config.php';
-    $query = $conn->query("select * from `users`") or die(mysqli_error());
+    
+    $query = $conn->query("CALL readAllUserData()")or die(mysqli_error());
     while($fetch = $query->fetch_array()){
+    
+//    $query = $conn->query("SELECT * FROM `users`") or die(mysqli_error());
+//    while($fetch = $query->fetch_array()){
 
         ?>
             <tr>

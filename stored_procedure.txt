@@ -1,0 +1,42 @@
+DELIMITER //
+
+CREATE PROCEDURE updateUserData(IN userid int(10), IN fullname varchar(100), IN username varchar(100), IN password varchar(255), IN userrole varchar(100))
+
+BEGIN
+
+	UPDATE users SET fullname = fullname, username = username, password = password, userrole = userrole WHERE id = userid;
+
+END
+
+DELIMITER ;
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+DELIMITER //
+
+	CREATE PROCEDURE deleteUserData(IN userid int(10));
+    
+    BEGIN
+    
+    	DELETE FROM users WHERE id = user_id;
+    
+    END //
+
+
+DELIMITER ;
+
+____________________________________________
+
+DELIMITER //
+
+CREATE PROCEDURE readSpecificUserData(IN userid int(10))
+
+BEGIN
+
+	SELECT * FROM users WHERE userid = userid;
+
+END //
+
+
+DELIMITER ;
